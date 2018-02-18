@@ -8,7 +8,7 @@ module.exports = {
     "parserOptions": {
         "sourceType": "module"
     },
-    "parser": "babel-eslint", // https://github.com/babel/babel-eslint/issues/312
+    "parser": "babel-eslint",
     "plugins": ["standard", "promise", "flowtype"]
     "rules": {
         "indent": [
