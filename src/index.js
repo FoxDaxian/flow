@@ -97,14 +97,103 @@
 // 为类增加泛型
 // class Person<A, B> {
 //     constructor() {
-        
+
 //     }
 //     say(name: A, age: B): A {
 //         console.log(name);
 //         console.log(age);
 //         return name;
-        
+
 //     }
 // }
 // 不要忽略<string, number>
 // const person: Person<string, number> = new Person();
+
+// flow的alias type。也就是可复用的type
+// 也可以使用泛型
+// type myType<foo> = {
+//     foo: foo
+// };
+// const obj: myType<string> = {
+//     foo: 'fox'
+// };
+
+// opaque type aliases 没搞明白，先继续看
+
+// 定义一个接口
+// interface common {
+//     say(): void;
+// }
+// 创造一个符合接口的类
+// class foo {
+//     say() {
+
+//     }
+//     go() {
+//         return 1;
+//     }
+// }
+// test实例要符合commoe接口，所以foo同理
+// const test: common = new foo();
+
+// 实现一个接口的类
+// 必须相符合
+// class foo implements common {
+//     say() {
+//     }
+// }
+
+// 实现多个接口的类
+// 要求严格相符
+// interface foo {
+//     say(): { name: string };
+// }
+// interface bar {
+//     write(): string;
+// }
+
+// class test implements foo, bar {
+//     say() {
+//         return {
+//             name: '12'
+//         };
+//     }
+//     write() {
+//         return '123';
+//     }
+// }
+
+// 接口泛型
+// +: 只读
+// -: 只写
+// interface foo<A, B> {
+//     +name: A;
+//     -age: B,
+//     say(): B;
+// }
+// const obj: foo<string, number> = {
+//     name: 'fox',
+//     age: 19,
+//     say() {
+//         return 1;
+//     }
+// };
+
+// name前面不加+(只读)会报错。。。
+// +允许为name属性执行更多的类型,string | number | array | ..
+// interface foo {
+//     +name: string | number;
+// }
+// const obj: foo = {
+//     name: '1'
+// };
+
+// name前面不加-(只写)会报错。。。
+// -允许为name传递任何一个符合结果的类型
+// interface foo {
+//     -name: boolean;
+// }
+// const temp = Math.random() > 0.5 ? 1 : false;
+// const obj: foo = {
+//     name: temp
+// };
